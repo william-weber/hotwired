@@ -1,0 +1,8 @@
+<div id="<%= dom_id post %>" class="text-lg" data-controller="posts" data-action="click->posts#show" data-url="<%= edit_post_path(post, format: :turbo_stream) %>">
+  <h3 class="text-2xl mb-5 font-medium"><%= post.title %></h3>
+
+  <p>
+    <%= post.body %>
+  </p>
+
+</div>

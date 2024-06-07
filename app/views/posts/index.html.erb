@@ -1,0 +1,23 @@
+<div class="w-full">
+  <% content_for :title, "Posts" %>
+
+  <div class="flex justify-between items-center my-20">
+    <h1 class="font-bold text-4xl">Posts</h1>
+    <%= link_to "New post", "#", class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium", data: { controller: :posts, action: "click->posts#show", url: new_post_path(format: :turbo_stream) } %>
+  </div>
+
+  <div id="posts" class="min-w-full">
+    <% @posts.each do |post| %>
+      <%= turbo_frame_tag dom_id(post) do %>
+        <%= render post %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div id="modal" class="flex justify-center items-center fixed top-0 left-0 w-full h-full hidden">
+    <div class="absolute w-full h-screen bg-black bg-opacity-50" data-controller="posts" data-action="click->posts#close"></div>
+    <div class="relative bg-white p-5 rounded-lg w-1/2">
+      <%= turbo_frame_tag :post %>
+    </div>
+  </div>
+</div>
